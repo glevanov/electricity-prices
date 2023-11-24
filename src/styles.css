@@ -25,14 +25,17 @@ body {
 }
 
 .chart {
+    --margin: 12px;
+
     box-sizing: border-box;
     display: grid;
     grid-template-rows: auto 1fr;
     height: 100vh;
     max-height: 600px;
-    width: min-content;
+    width: calc(100% - var(--margin) * 2);
+    max-width: max-content;
     padding: 8px;
-    margin: 12px;
+    margin: var(--margin);
 
     border: 1px solid var(--border-color);
     border-radius: 6px;
@@ -48,6 +51,8 @@ body {
 .data {
     display: flex;
     gap: 8px;
+
+    overflow-y: auto;
 }
 
 .percentage {

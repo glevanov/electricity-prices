@@ -23,7 +23,7 @@ export const renderChart = (data) => {
         price.appendChild(document.createTextNode(value))
         
         const hour = document.createElement('span')
-        hour.appendChild(document.createTextNode(index + 10))
+        hour.appendChild(document.createTextNode(index + 8))
         bar.appendChild(price)
         bar.appendChild(hour)
         
