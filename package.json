@@ -3,7 +3,8 @@
   "description": "Visualizes electricity prices in Malmö",
   "scripts": {
     "dev": "pnpm parcel src/index.html",
-    "build": "pnpm parcel build src/index.html"
+    "build": "pnpm parcel build src/index.html",
+    "build:gh-pages": "pnpm parcel build src/index.html --public-url /electricity-prices/"
   },
   "author": "Grigoriy Levanov",
   "repository": {
