@@ -1,0 +1,16 @@
+{
+  "name": "electricity-prices",
+  "description": "Visualizes electricity prices in Malmö",
+  "scripts": {
+    "dev": "pnpm parcel src/index.html"
+  },
+  "author": "Grigoriy Levanov",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glevanov/electricity-prices.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}
