@@ -38,5 +38,6 @@ window.onload = function() {
     })
     chart.appendChild(graph)
     
+    document.body.textContent = ''
     document.body.appendChild(chart)
 }
