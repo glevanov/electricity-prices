@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:3000'
+const endpoint = 'https://electricity-service.onrender.com'
 
 export const loadData = async () => {
 	try {
