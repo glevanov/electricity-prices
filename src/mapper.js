@@ -1,10 +1,12 @@
 export const mapData = (data) => {
-    const maxValue = Math.max(...data)
-    const limit = 90
-    const scaling = limit / maxValue
+  const prices = data.map(({ price }) => price)
 
-    return data.map(value => ({
-        value,
-        height: Math.round(value * scaling)
-    }))
+  const maxValue = Math.max(...prices)
+  const limit = 90
+  const scaling = limit / maxValue
+
+  return data.map(item => ({
+    ...item,
+    height: Math.round(item.price * scaling)
+  }))
 }

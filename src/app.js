@@ -1,11 +1,18 @@
 import { loadData } from './api'
 import { mapData } from './mapper'
-import { renderChart } from './render-chart'
+import { Chart } from './ui/chart'
+import { ErrorMessage  } from './ui/error-message'
+import { render } from './ui/render'
 
-window.onload = async function() {
-    const data = await loadData()
+window.onload = async function () {
+  const response = await loadData()
 
-    const mappedData = mapData(data)
+  if (!response.isSuccess) {
+    render(ErrorMessage(response.error))
+    return
+  }
 
-    renderChart(mappedData)
+  const mappedData = mapData(response.data)
+
+  render(Chart(mappedData))
 }
