@@ -1,11 +1,14 @@
+import { mapData } from './mapper'
+
 const endpoint = 'https://electricity-service.onrender.com'
+// const endpoint = 'http://localhost:3000'
 
 export const loadData = async () => {
 	try {
 		const response = await fetch(endpoint)
     return {
       isSuccess: true,
-      data: await response.json()
+      data: mapData(await response.json())
     }
 	} catch (error) {
     console.error(error)
