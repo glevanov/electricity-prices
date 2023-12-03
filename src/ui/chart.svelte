@@ -1,8 +1,7 @@
 <script>
-  export let data
+  import Day from './day.svelte'
 
-  const currentHour = new Date().getHours()
-  const currentHourIndex = data.findIndex(({ hour }) => hour === currentHour)
+  export let data
 </script>
 
 <style>
@@ -12,7 +11,8 @@
     box-sizing: border-box;
     display: grid;
     grid-template-rows: auto 1fr;
-    height: 100vh;
+    gap: 8px;
+    height: calc(100vh - var(--margin) * 2);
     max-height: 600px;
     width: calc(100% - var(--margin) * 2);
     max-width: max-content;
@@ -30,40 +30,11 @@
     font-size: 16px;
   }
 
-  .data {
+  .dataWrapper {
     display: flex;
     gap: 8px;
 
     overflow-y: auto;
-  }
-
-  .percentage {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    gap: 8px;
-    align-items: end;
-    justify-items: center;
-  }
-
-  .price {
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    height: var(--bar-height);
-    padding-top: 12px;
-    width: 45px;
-    box-sizing: border-box;
-
-    border-radius: 6px;
-    background-color: var(--bar-color);
-
-    color: var(--bar-text-color);
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  .price.current {
-    background-color: var(--current-bar-color);
   }
 </style>
 
@@ -73,14 +44,9 @@
     <span class="subHeader">эре/час</span>
   </div>
 
-  <div class="data">
-    {#each data as { hour, price, height }, index}
-      <div class="percentage">
-        <span class="price {index === currentHourIndex ? 'current' : ''}" style="--bar-height: {height}%">
-          {Math.floor(price)}
-        </span>
-        <span>{hour}</span>
-      </div>
+  <div class="dataWrapper">
+    {#each data as day}
+      <Day day={day} />
     {/each}
   </div>
 </div>
