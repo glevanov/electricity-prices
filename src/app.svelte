@@ -3,7 +3,7 @@
   import Loader from "./ui/loader.svelte";
   import ErrorMessage from "./ui/error-message.svelte";
 
-  import { loadData } from "./api.js";
+  import { loadData } from "./api/api.js";
 
   let loading = true;
   let response;
