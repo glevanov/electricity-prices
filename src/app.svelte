@@ -4,20 +4,34 @@
   import ErrorMessage from "./ui/error-message.svelte";
 
   import { loadData } from "./api/api.js";
+  import { PersistentStorage } from "./persistent-storage.js";
+
+  const storage = new PersistentStorage();
 
   let loading = true;
-  let response;
+  let data = storage.load() ?? undefined;
+  let error;
 
-  loadData().then((data) => {
-    response = data;
+  $: showLoader = loading && data === undefined;
+  $: showChart = data !== undefined && error === undefined;
+
+  loadData().then((response) => {
+    if (response.isSuccess) {
+      data = response.data;
+      error = undefined;
+      storage.write(data);
+    } else {
+      data = undefined;
+      error = response.error;
+    }
     loading = false;
   });
 </script>
 
-{#if loading}
+{#if showLoader}
   <Loader />
-{:else if response.isSuccess}
-  <Chart data={response.data} />
+{:else if showChart}
+  <Chart {data} />
 {:else}
-  <ErrorMessage message={response.error} />
+  <ErrorMessage message={error ?? "Неизвестная ошибка"} />
 {/if}
