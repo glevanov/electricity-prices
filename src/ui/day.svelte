@@ -1,31 +1,51 @@
 <script>
-  import { isToday, isTomorrow } from 'date-fns'
+  import { isToday, isTomorrow } from "date-fns";
 
-  export let day
-  const { points, start } = day
+  export let day;
+  const { points, start } = day;
 
-  const date = new Date(day.start)
+  const date = new Date(day.start);
 
-  const isCurrentDate = isToday(date)
-  const currentHour = new Date().getHours()
+  const isCurrentDate = isToday(date);
+  const currentHour = new Date().getHours();
   const currentHourIndex = isCurrentDate
     ? day.points.findIndex(({ hour }) => hour === currentHour)
-    : undefined
+    : undefined;
 
-  const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+  const capitalizeFirstLetter = (str) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
 
-  const formatDay = () => date.toLocaleDateString('ru-RU', { weekday: 'long' })
+  const formatDay = () => date.toLocaleDateString("ru-RU", { weekday: "long" });
 
   const getDayName = () => {
     if (isToday(date)) {
-      return 'Сегодня'
+      return "Сегодня";
     }
     if (isTomorrow(date)) {
-      return 'Завтра'
+      return "Завтра";
     }
-    return capitalizeFirstLetter(formatDay())
-  }
+    return capitalizeFirstLetter(formatDay());
+  };
 </script>
+
+<div class="day">
+  <div class="percentages">
+    {#each points as { hour, price, height }, index}
+      <div class="percentage">
+        <span
+          class="price {index === currentHourIndex ? 'current' : ''}"
+          style="--bar-height: {height}%"
+        >
+          {Math.floor(price)}
+        </span>
+        <span>{hour}</span>
+      </div>
+    {/each}
+  </div>
+  <div>
+    {getDayName(start)}
+  </div>
+</div>
 
 <style>
   .day {
@@ -71,19 +91,3 @@
     background-color: var(--current-bar-color);
   }
 </style>
-
-<div class="day">
-  <div class="percentages">
-    {#each points as { hour, price, height }, index}
-      <div class="percentage">
-        <span class="price { index === currentHourIndex ? 'current' : ''}" style="--bar-height: {height}%">
-          {Math.floor(price)}
-        </span>
-        <span>{hour}</span>
-      </div>
-    {/each}
-  </div>
-  <div>
-    {getDayName(start)}
-  </div>
-</div>

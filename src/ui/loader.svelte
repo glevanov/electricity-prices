@@ -1,3 +1,5 @@
+<div class="message">Загружаем цены. Это может занять около минуты.</div>
+
 <style>
   .message {
     display: flex;
@@ -11,5 +13,3 @@
     text-align: center;
   }
 </style>
-
-<div class="message">Загружаем цены. Это может занять около минуты.</div>

@@ -1,9 +1,19 @@
 <script>
-  import Header from './header.svelte'
-  import Day from './day.svelte'
+  import Header from "./header.svelte";
+  import Day from "./day.svelte";
 
-  export let data
+  export let data;
 </script>
+
+<div class="chart">
+  <Header today={data[0]} />
+
+  <div class="dataWrapper">
+    {#each data as day}
+      <Day {day} />
+    {/each}
+  </div>
+</div>
 
 <style>
   .chart {
@@ -31,13 +41,3 @@
     overflow-y: auto;
   }
 </style>
-
-<div class="chart">
-  <Header today={data[0]} />
-
-  <div class="dataWrapper">
-    {#each data as day}
-      <Day day={day} />
-    {/each}
-  </div>
-</div>

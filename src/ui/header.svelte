@@ -1,15 +1,20 @@
 <script>
-  export let today
+  export let today;
 
-  const now = new Date()
-  const hour = now.getHours()
-  const price = today.points.find(point => point.hour === hour).price
+  const now = new Date();
+  const hour = now.getHours();
+  const price = today.points.find((point) => point.hour === hour).price;
 
-  const formatHour = hour => hour < 10 ? `0${hour}` : String(hour)
-  
-  const start = `${formatHour(hour)}:00`
-  const end = `${formatHour(hour + 1)}:00`
+  const formatHour = (hour) => (hour < 10 ? `0${hour}` : String(hour));
+
+  const start = `${formatHour(hour)}:00`;
+  const end = `${formatHour(hour + 1)}:00`;
 </script>
+
+<div class="header">
+  <span class="price">{price} эре</span> за киловатт-час
+  <div class="subHeader">в Мальмё на {start}-{end}</div>
+</div>
 
 <style>
   .price {
@@ -23,8 +28,3 @@
     font-size: 16px;
   }
 </style>
-
-<div class="header">
-  <span class="price">{price} эре</span> за киловатт-час
-  <div class="subHeader">в Мальмё на {start}-{end}</div>
-</div>

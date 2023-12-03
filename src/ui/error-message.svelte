@@ -1,6 +1,8 @@
 <script>
-  export let message
+  export let message;
 </script>
+
+<div class="message">{message}</div>
 
 <style>
   .message {
@@ -15,5 +17,3 @@
     text-align: center;
   }
 </style>
-
-<div class="message">{message}</div>
