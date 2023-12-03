@@ -1,4 +1,5 @@
 <script>
+  import Header from './header.svelte'
   import Day from './day.svelte'
 
   export let data
@@ -23,13 +24,6 @@
     border-radius: 6px;
   }
 
-  .subHeader {
-    display: block;
-
-    color: var(--sub-text-color);
-    font-size: 16px;
-  }
-
   .dataWrapper {
     display: flex;
     gap: 8px;
@@ -39,10 +33,7 @@
 </style>
 
 <div class="chart">
-  <div class="header">
-    Электричество в Мальмё
-    <span class="subHeader">эре/час</span>
-  </div>
+  <Header today={data[0]} />
 
   <div class="dataWrapper">
     {#each data as day}
