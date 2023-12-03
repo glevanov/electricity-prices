@@ -17,12 +17,14 @@
   }
 
   .subHeader {
+    display: block;
+
     color: var(--sub-text-color);
     font-size: 16px;
   }
 </style>
 
 <div class="header">
-  <div class="price">{price} эре за киловатт</div>
-  <div class="subHeader">Цена за электричество в Мальмё на {start}-{end}</div>
+  <span class="price">{price} эре</span> за киловатт-час
+  <div class="subHeader">в Мальмё на {start}-{end}</div>
 </div>
