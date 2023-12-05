@@ -21,9 +21,12 @@
     "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{css,js,svelte}": [
+    "src/**/*.{js,svelte}": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "src/**/*.{css}": [
+      "prettier --write",
     ]
   },
   "devDependencies": {
