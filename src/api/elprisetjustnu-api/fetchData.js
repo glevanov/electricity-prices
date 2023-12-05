@@ -19,19 +19,22 @@ export const fetchData = async () => {
   const today = startOfDay(new Date());
   const tomorrow = addDays(today, 1);
 
-  const segments = await [today, tomorrow].reduce(async (segments, date) => {
+  const requests = [today, tomorrow].map((date) => {
     const url = getUrl(date);
-    const data = await fetchUrl(url);
+    return fetchUrl(url);
+  });
+  const responses = await Promise.all(requests);
 
-    if (data === null) return segments;
+  const segments = [today, tomorrow].reduce((segments, date, index) => {
+    const repsonse = responses[index];
 
-    const points = transformPoints(data);
+    if (repsonse === null) return segments;
 
     return [
       ...segments,
       {
         start: date,
-        points,
+        points: transformPoints(repsonse),
       },
     ];
   }, []);
