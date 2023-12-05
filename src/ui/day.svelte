@@ -4,9 +4,7 @@
   export let day;
   const { points, start } = day;
 
-  const date = new Date(day.start);
-
-  const isCurrentDate = isToday(date);
+  const isCurrentDate = isToday(start);
   const currentHour = new Date().getHours();
   const currentHourIndex = isCurrentDate
     ? day.points.findIndex(({ hour }) => hour === currentHour)
@@ -15,13 +13,14 @@
   const capitalizeFirstLetter = (str) =>
     str.charAt(0).toUpperCase() + str.slice(1);
 
-  const formatDay = () => date.toLocaleDateString("ru-RU", { weekday: "long" });
+  const formatDay = () =>
+    start.toLocaleDateString("ru-RU", { weekday: "long" });
 
   const getDayName = () => {
-    if (isToday(date)) {
+    if (isToday(start)) {
       return "Сегодня";
     }
-    if (isTomorrow(date)) {
+    if (isTomorrow(start)) {
       return "Завтра";
     }
     return capitalizeFirstLetter(formatDay());

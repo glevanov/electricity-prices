@@ -1,14 +1,10 @@
-import { mapData } from "./mapper";
-
-const endpoint = "https://electricity-service.onrender.com";
-// const endpoint = "http://localhost:3000";
+import { fetchData } from "./elprisetjustnu-api/fetchData.js";
 
 export const loadData = async () => {
   try {
-    const response = await fetch(endpoint);
     return {
       isSuccess: true,
-      data: mapData(await response.json()),
+      data: await fetchData(),
     };
   } catch (error) {
     console.error(error);

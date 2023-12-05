@@ -4,31 +4,26 @@
   import ErrorMessage from "./ui/error-message.svelte";
 
   import { loadData } from "./api/api.js";
-  import { PersistentStorage } from "./persistent-storage.js";
 
-  const storage = new PersistentStorage();
-
-  let loading = true;
-  let data = storage.load() ?? undefined;
+  let isLoading = true;
+  let data;
   let error;
 
-  $: showLoader = loading && data === undefined;
   $: showChart = data !== undefined && error === undefined;
 
   loadData().then((response) => {
     if (response.isSuccess) {
       data = response.data;
       error = undefined;
-      storage.write(data);
     } else {
       data = undefined;
       error = response.error;
     }
-    loading = false;
+    isLoading = false;
   });
 </script>
 
-{#if showLoader}
+{#if isLoading}
   <Loader />
 {:else if showChart}
   <Chart {data} />
