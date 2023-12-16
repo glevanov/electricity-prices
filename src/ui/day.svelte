@@ -70,10 +70,12 @@
   }
 
   .price {
+    --min-height: 40px;
+
     display: flex;
     align-items: start;
     justify-content: center;
-    height: var(--bar-height);
+    height: max(var(--min-height), var(--bar-height));
     padding-top: 12px;
     width: var(--bar-width);
     box-sizing: border-box;
