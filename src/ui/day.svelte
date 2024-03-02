@@ -41,7 +41,7 @@
       </div>
     {/each}
   </div>
-  <div>
+  <div class="dayName">
     {getDayName(start)}
   </div>
 </div>
@@ -90,5 +90,11 @@
 
   .price.current {
     background-color: var(--current-bar-color);
+  }
+
+  .dayName {
+    position: sticky;
+    left: 0;
+    width: min-content;
   }
 </style>
