@@ -1,6 +1,6 @@
 <script>
   import Header from "./header.svelte";
-  import Day from "./day.svelte";
+  import Day from "./day/day.svelte";
 
   export let data;
 </script>
