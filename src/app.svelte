@@ -1,7 +1,7 @@
 <script>
-  import Chart from "./ui/chart.svelte";
-  import Loader from "./ui/loader.svelte";
-  import ErrorMessage from "./ui/error-message.svelte";
+  import Chart from "./ui/chart/chart.svelte";
+  import Loader from "./ui/loader/loader.svelte";
+  import ErrorMessage from "./ui/error-message/error-message.svelte";
 
   import { loadData } from "./api/api.js";
 
