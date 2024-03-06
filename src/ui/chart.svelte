@@ -24,7 +24,6 @@
     grid-template-rows: auto 1fr;
     gap: 8px;
     height: calc(100vh - var(--margin) * 2);
-    max-height: 600px;
     width: calc(100% - var(--margin) * 2);
     max-width: max-content;
     padding: 8px;
