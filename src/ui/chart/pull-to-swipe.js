@@ -1,10 +1,10 @@
+const MIN_SWIPE_LENGTH = 100;
+const MAX_OFF_PATH = 150;
+
 let startX = null;
 let startY = null;
 let currentX = null;
 let currentY = null;
-
-const MIN_SWIPE_LENGTH = 100;
-const MAX_OFF_PATH = 150;
 
 const cleanUp = () => {
   startX = null;
