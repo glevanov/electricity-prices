@@ -1,11 +1,8 @@
 <script>
   import Header from "../header/header.svelte";
   import Day from "../day/day.svelte";
-  import { pullToSwipe } from "./pull-to-swipe.js";
 
   export let data;
-
-  pullToSwipe();
 </script>
 
 <div class="chart">

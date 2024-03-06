@@ -4,6 +4,7 @@
   import ErrorMessage from "./ui/error-message/error-message.svelte";
 
   import { loadData } from "./api/api.js";
+  import { pullToSwipe } from "./pull-to-swipe";
 
   let isLoading = true;
   let data;
@@ -11,16 +12,23 @@
 
   $: showChart = data !== undefined && error === undefined;
 
-  loadData().then((response) => {
-    if (response.isSuccess) {
-      data = response.data;
-      error = undefined;
-    } else {
-      data = undefined;
-      error = response.error;
-    }
-    isLoading = false;
-  });
+  const handleLoad = () => {
+    isLoading = true;
+    loadData().then((response) => {
+      if (response.isSuccess) {
+        data = response.data;
+        error = undefined;
+      } else {
+        data = undefined;
+        error = response.error;
+      }
+      isLoading = false;
+    });
+  };
+
+  handleLoad();
+
+  pullToSwipe(handleLoad).init();
 </script>
 
 {#if isLoading}

@@ -29,7 +29,7 @@ const handleCancel = () => {
   cleanUp();
 };
 
-const handleEnd = () => {
+const handleEnd = (callback) => {
   if (!startX || !startY || !currentX || !currentY) {
     cleanUp();
     return;
@@ -42,14 +42,20 @@ const handleEnd = () => {
   const isLongEnough = deltaY > MIN_SWIPE_LENGTH;
 
   if (isLongEnough && isOnPath) {
-    window.location.reload();
+    callback();
   }
   cleanUp();
 };
 
-export const pullToSwipe = () => {
-  document.addEventListener("touchstart", handleStart, false);
-  document.addEventListener("touchmove", handleMove, false);
-  document.addEventListener("touchcancel", handleCancel, false);
-  document.addEventListener("touchend", handleEnd, false);
+export const pullToSwipe = (callback) => {
+  const boundEndHandler = () => handleEnd(callback);
+
+  return {
+    init: () => {
+      document.addEventListener("touchstart", handleStart, false);
+      document.addEventListener("touchmove", handleMove, false);
+      document.addEventListener("touchcancel", handleCancel, false);
+      document.addEventListener("touchend", boundEndHandler, false);
+    },
+  };
 };
