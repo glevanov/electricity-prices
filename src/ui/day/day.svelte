@@ -2,7 +2,7 @@
   import { isToday } from "date-fns";
 
   import { getDayName } from "./day.util.js";
-  import Percentage from "../percentage.svelte";
+  import Percentage from "./percentage.svelte";
 
   export let day;
   const { points, start } = day;
