@@ -1,4 +1,4 @@
-const MIN_SWIPE_LENGTH = 100;
+const MIN_SWIPE_LENGTH = 150;
 const MAX_OFF_PATH = 150;
 
 let startX = null;
