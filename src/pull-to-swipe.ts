@@ -1,10 +1,13 @@
+type AnyCallback = (...args: unknown[]) => unknown;
+type Coordinate = number | null;
+
 const MIN_SWIPE_LENGTH = 150;
 const MAX_OFF_PATH = 150;
 
-let startX = null;
-let startY = null;
-let currentX = null;
-let currentY = null;
+let startX: Coordinate = null;
+let startY: Coordinate = null;
+let currentX: Coordinate = null;
+let currentY: Coordinate = null;
 
 const cleanUp = () => {
   startX = null;
@@ -13,23 +16,23 @@ const cleanUp = () => {
   currentY = null;
 };
 
-const handleStart = (e) => {
+const handleStart = (e: TouchEvent) => {
   if (e.touches.length !== 1) return;
-  startX = e.touches.item(0).clientX;
-  startY = e.touches.item(0).clientY;
+  startX = e.touches.item(0)?.clientX ?? null;
+  startY = e.touches.item(0)?.clientY ?? null;
 };
 
-const handleMove = (e) => {
+const handleMove = (e: TouchEvent) => {
   if (e.touches.length !== 1) return;
-  currentX = e.touches.item(0).clientX;
-  currentY = e.touches.item(0).clientY;
+  currentX = e.touches.item(0)?.clientX ?? null;
+  currentY = e.touches.item(0)?.clientY ?? null;
 };
 
 const handleCancel = () => {
   cleanUp();
 };
 
-const handleEnd = (callback) => {
+const handleEnd = (callback: AnyCallback) => {
   if (!startX || !startY || !currentX || !currentY) {
     cleanUp();
     return;
@@ -47,7 +50,7 @@ const handleEnd = (callback) => {
   cleanUp();
 };
 
-export const pullToSwipe = (callback) => {
+export const pullToSwipe = (callback: AnyCallback) => {
   const boundEndHandler = () => handleEnd(callback);
 
   return {

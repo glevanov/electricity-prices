@@ -5,9 +5,10 @@
     "dev": "pnpm vite",
     "build": "pnpm vite build",
     "build:gh-pages": "pnpm vite build --base /electricity-prices/",
-    "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
+    "lint": "pnpm run lint:prettier && pnpm run lint:eslint && pnpm run lint:tsc",
     "lint:prettier": "prettier --write src",
     "lint:eslint": "eslint --fix src",
+    "lint:tsc": "tsc --noEmit",
     "lint:setup-hooks": "simple-git-hooks"
   },
   "author": "Grigoriy Levanov",
@@ -18,7 +19,7 @@
   "type": "module",
   "license": "MIT",
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
+    "pre-commit": "pnpm exec lint-staged && pnpm run lint:tsc"
   },
   "lint-staged": {
     "src/**/*.{js,svelte}": [
@@ -38,6 +39,7 @@
     "prettier": "3.2.5",
     "prettier-plugin-svelte": "3.2.2",
     "simple-git-hooks": "2.9.0",
+    "typescript": "5.4.2",
     "vite": "5.1.4"
   },
   "dependencies": {

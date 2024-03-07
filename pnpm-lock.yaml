@@ -37,6 +37,9 @@ devDependencies:
   simple-git-hooks:
     specifier: 2.9.0
     version: 2.9.0
+  typescript:
+    specifier: 5.4.2
+    version: 5.4.2
   vite:
     specifier: 5.1.4
     version: 5.1.4
@@ -1707,6 +1710,12 @@ packages:
   /type-fest@3.13.1:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
+    dev: true
+
+  /typescript@5.4.2:
+    resolution: {integrity: sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
     dev: true
 
   /uri-js@4.4.1:
