@@ -3,37 +3,30 @@ name: deploy
 on:
   push:
     branches:
-      - 'main'
+      - "main"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      -
-        name: Node
+      - name: Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      -
-        name: pnpm
+          node-version: "20"
+      - name: pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
-      -
-        name: Install
+      - name: Install
         run: pnpm install
-      -
-        name: Lint
-        run: pnpm run lint
-      -
-        name: Build
+      - name: Lint
+        run: pnpm run lint:ci
+      - name: Build
         run: pnpm run build:gh-pages
-      -
-        name: Deploy
+      - name: Deploy
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: gh-pages
