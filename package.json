@@ -22,16 +22,21 @@
     "pre-commit": "pnpm exec lint-staged && pnpm run lint:tsc"
   },
   "lint-staged": {
-    "src/**/*.{js,svelte}": [
+    "*.{js,ts,svelte}": [
       "prettier --write",
       "eslint --fix"
     ],
-    "src/**/*.css": [
+    "*.css": [
+      "prettier --write"
+    ],
+    "*.{json,yaml,yml}": [
       "prettier --write"
     ]
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "3.0.2",
+    "@typescript-eslint/eslint-plugin": "7.1.1",
+    "@typescript-eslint/parser": "7.1.1",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-svelte": "2.35.1",
