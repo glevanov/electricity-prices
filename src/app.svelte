@@ -3,7 +3,7 @@
   import Loader from "./ui/loader/loader.svelte";
   import ErrorMessage from "./ui/error-message/error-message.svelte";
 
-  import { loadData } from "./api/api.js";
+  import { loadData } from "./api/api";
   import { pullToSwipe } from "./pull-to-swipe";
 
   let isLoading = true;

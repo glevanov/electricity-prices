@@ -1,5 +1,3 @@
-import { mapData } from "../mapper.js";
-
 const endpoint = "https://electricity-service.onrender.com";
 // const endpoint = "http://localhost:3000";
 
@@ -11,5 +9,5 @@ export const fetchData = async () => {
   const data = await response.json();
   // TODO UI now expects Date object instead of timestamp, so this needs to be updated in transform layer
 
-  return mapData(data);
+  return data;
 };

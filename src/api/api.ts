@@ -1,6 +1,7 @@
-import { fetchData } from "./elprisetjustnu-api/fetchData.js";
+import type { Result } from "./api.types";
+import { fetchData } from "./elprisetjustnu-api/fetchData";
 
-export const loadData = async () => {
+export const loadData = async (): Promise<Result> => {
   try {
     return {
       isSuccess: true,
