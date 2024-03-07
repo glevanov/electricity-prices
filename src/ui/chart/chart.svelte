@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
   import Header from "../header/header.svelte";
   import Day from "../day/day.svelte";
+  import type { Segment } from "../../api/api.types";
 
-  export let data;
+  export let data: Segment[];
 </script>
 
 <div class="chart">

@@ -34,7 +34,7 @@
 
 {#if isLoading}
   <Loader />
-{:else if showChart}
+{:else if showChart && data}
   <Chart {data} />
 {:else}
   <ErrorMessage message={error ?? "Неизвестная ошибка"} />
