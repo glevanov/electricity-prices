@@ -1,14 +1,15 @@
-<script>
+<script lang="ts">
   import Chart from "./ui/chart/chart.svelte";
   import Loader from "./ui/loader/loader.svelte";
   import ErrorMessage from "./ui/error-message/error-message.svelte";
 
   import { loadData } from "./api/api";
   import { pullToSwipe } from "./pull-to-swipe";
+  import type { Failure, Success } from "./api/api.types";
 
   let isLoading = true;
-  let data;
-  let error;
+  let data: Success["data"] | undefined;
+  let error: Failure["error"] | undefined;
 
   $: showChart = data !== undefined && error === undefined;
 

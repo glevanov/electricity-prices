@@ -14,9 +14,9 @@ export type Success = Readonly<{
   data: Segment[];
 }>;
 
-export type Error = Readonly<{
+export type Failure = Readonly<{
   isSuccess: false;
   error: string;
 }>;
 
-export type Result = Success | Error;
+export type Result = Success | Failure;
