@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
   import { isToday } from "date-fns";
 
   import { getDayName } from "./day.util.js";
   import Percentage from "./percentage.svelte";
+  import type { Segment } from "../../api/api.types.js";
 
-  export let day;
+  export let day: Segment;
   const { points, start } = day;
 
   const isCurrentDate = isToday(start);
@@ -22,7 +23,6 @@
         {price}
         {height}
         isCurrentHour={index === currentHourIndex}
-        key={hour}
       />
     {/each}
   </div>

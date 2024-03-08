@@ -1,8 +1,10 @@
-<script>
-  export let hour;
-  export let price;
-  export let height;
-  export let isCurrentHour;
+<script lang="ts">
+  import type { Point } from "../../api/api.types";
+
+  export let hour: Point["hour"];
+  export let price: Point["price"];
+  export let height: Point["height"];
+  export let isCurrentHour: boolean;
 </script>
 
 <dl class="percentage">
