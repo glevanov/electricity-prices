@@ -8,4 +8,8 @@ export default defineConfig({
       preprocess: [vitePreprocess()],
     }),
   ],
+  test: {
+    include: ["**/*.test.ts"],
+    environment: "happy-dom",
+  },
 });
