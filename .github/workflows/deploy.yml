@@ -14,16 +14,18 @@ jobs:
       - name: Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: lts
       - name: pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: latest
           run_install: false
       - name: Install
         run: pnpm install
       - name: Lint
         run: pnpm run lint:ci
+      - name: Test
+        run: pnpm run test
       - name: Build
         run: pnpm run build:gh-pages
       - name: Deploy
