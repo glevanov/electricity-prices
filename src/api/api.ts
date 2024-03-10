@@ -1,5 +1,5 @@
 import type { Result } from "./api.types";
-import { fetchData } from "./elprisetjustnu-api/fetchData";
+import { fetchData } from "./elprisetjustnu-api/fetch-data";
 
 export const loadData = async (): Promise<Result> => {
   try {
