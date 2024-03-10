@@ -1,13 +1,11 @@
 <script lang="ts">
   import type { Segment } from "../../api/api.types";
+  import { formatHour, getCurrentHourInMalmo } from "../../temporal/temporal";
 
   export let today: Segment;
 
-  const now = new Date();
-  const hour = now.getHours();
+  const hour = getCurrentHourInMalmo();
   const price = today.points.find((point) => point.hour === hour)?.price;
-
-  const formatHour = (hour: number) => (hour < 10 ? `0${hour}` : String(hour));
 
   const start = `${formatHour(hour)}:00`;
   const end = `${formatHour(hour + 1)}:00`;

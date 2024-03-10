@@ -1,5 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { extractHours, getCurrentHourInMalmo, getDayName } from "./temporal";
+import {
+  extractHours,
+  formatHour,
+  getCurrentHourInMalmo,
+  getDayName,
+} from "./temporal";
 import { addDays } from "date-fns";
 
 describe("extractHours", () => {
@@ -60,5 +65,14 @@ describe("getDayName", () => {
   it("should return the correct day name for a specific date", () => {
     const specificDate = new Date(2023, 0, 1); // January 1, 2023 is a Sunday
     expect(getDayName(specificDate)).toBe("Воскресенье");
+  });
+});
+
+describe("formatHour", () => {
+  it("should format the hour to a two-digit string", () => {
+    expect(formatHour(0)).toBe("00");
+    expect(formatHour(1)).toBe("01");
+    expect(formatHour(10)).toBe("10");
+    expect(formatHour(23)).toBe("23");
   });
 });

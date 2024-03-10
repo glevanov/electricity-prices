@@ -44,3 +44,9 @@ export const getDayName = (start: Date) => {
 
   return capitalizeFirstLetter(formatDay(start));
 };
+
+/**
+ * Formats the hour to a two-digit string
+ */
+export const formatHour = (hour: number) =>
+  hour < 10 ? `0${hour}` : String(hour);
