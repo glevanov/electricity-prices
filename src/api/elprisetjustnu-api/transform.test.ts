@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { roundToTwoDecimal, transformPoints } from "./transform";
+import { roundToTwoDecimal, transformPoints, transformDay } from "./transform";
 import { hourData } from "./__mocks__/hour-data.js";
 
 describe("roundToTwoDecimal", () => {
@@ -8,6 +8,23 @@ describe("roundToTwoDecimal", () => {
     expect(roundToTwoDecimal(hourData[3].SEK_per_kWh * 100)).toBe(40.2);
     expect(roundToTwoDecimal(hourData[11].SEK_per_kWh * 100)).toBe(5.63);
     expect(roundToTwoDecimal(hourData[12].SEK_per_kWh * 100)).toBe(1.71);
+  });
+});
+
+describe("transformDay", () => {
+  it("transforms the data correctly", () => {
+    expect(transformDay(hourData[0])).toEqual({
+      hour: 0,
+      price: 55.01,
+    });
+    expect(transformDay(hourData[11])).toEqual({
+      hour: 11,
+      price: 5.63,
+    });
+    expect(transformDay(hourData[23])).toEqual({
+      hour: 23,
+      price: 55.51,
+    });
   });
 });
 
