@@ -6,7 +6,7 @@ on:
       - "main"
 
 jobs:
-  deploy:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,10 +22,32 @@ jobs:
           run_install: false
       - name: Install
         run: pnpm install
+
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Lint
         run: pnpm run lint:ci
+
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: pnpm run test
+
+  build:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
       - name: Build
         run: pnpm run build:gh-pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v4
         with:
