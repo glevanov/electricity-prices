@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { extractHours, getCurrentHourInMalmo } from "./temporal";
+import { extractHours, getCurrentHourInMalmo, getDayName } from "./temporal";
+import { addDays } from "date-fns";
 
 describe("extractHours", () => {
   it("should extract the hour from a timestamp", () => {
@@ -42,5 +43,22 @@ describe("getCurrentHourInMalmo", () => {
     const date3 = new Date("2021-01-01T17:00:00+01:00");
     vi.setSystemTime(date3);
     expect(getCurrentHourInMalmo()).toBe(17);
+  });
+});
+
+describe("getDayName", () => {
+  it("handles today", () => {
+    const today = new Date();
+    expect(getDayName(today)).toBe("Сегодня");
+  });
+
+  it("handles tomorrow", () => {
+    const tomorrow = addDays(new Date(), 1);
+    expect(getDayName(tomorrow)).toBe("Завтра");
+  });
+
+  it("should return the correct day name for a specific date", () => {
+    const specificDate = new Date(2023, 0, 1); // January 1, 2023 is a Sunday
+    expect(getDayName(specificDate)).toBe("Воскресенье");
   });
 });

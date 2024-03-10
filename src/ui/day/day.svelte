@@ -1,10 +1,12 @@
 <script lang="ts">
   import { isToday } from "date-fns";
 
-  import { getDayName } from "./day.util.js";
   import Percentage from "./percentage.svelte";
   import type { Segment } from "../../api/api.types.js";
-  import { getCurrentHourInMalmo } from "../../temporal/temporal.js";
+  import {
+    getCurrentHourInMalmo,
+    getDayName,
+  } from "../../temporal/temporal.js";
 
   export let day: Segment;
   const { points, start } = day;
