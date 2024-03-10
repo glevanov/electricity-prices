@@ -1,3 +1,4 @@
+import { extractHours } from "../../temporal/temporal";
 import type { HourData, TransformedPoint } from "./types";
 
 export const roundToTwoDecimal = (number: number) =>
@@ -5,7 +6,7 @@ export const roundToTwoDecimal = (number: number) =>
 
 export const transformDay = (day: HourData): TransformedPoint => ({
   price: roundToTwoDecimal(day.SEK_per_kWh * 100),
-  hour: new Date(day.time_start).getHours(),
+  hour: extractHours(day.time_start),
 });
 
 export const transformPoints = (data: HourData[]) => data.map(transformDay);
