@@ -1,5 +1,6 @@
 // We need custom date handlers since we want to operate specifically
 // in Malmö time zone, and JS Date object is not very good at that.
+import { isToday, isTomorrow } from "date-fns";
 
 /**
  * Extracts the hours from a timestamp
@@ -20,8 +21,6 @@ export const getCurrentHourInMalmo = () => {
 
   return Number(hour);
 };
-
-import { isToday, isTomorrow } from "date-fns";
 
 const capitalizeFirstLetter = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
