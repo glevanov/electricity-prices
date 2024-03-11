@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { responses } from "./__mocks__/responses";
-import { fetchData } from "./fetch-data";
+import { fetchData, fetchUrl, getUrl } from "./fetch-data";
 
 const fetchMock = vi.fn();
 
@@ -54,5 +54,41 @@ describe("fetchData", () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(response).toHaveLength(0);
+  });
+});
+
+describe("getUrl", () => {
+  it("should return a valid url", () => {
+    expect(getUrl(new Date("2021-01-01"))).toBe(
+      "https://www.elprisetjustnu.se/api/v1/prices/2021/01-01_SE4.json",
+    );
+
+    expect(getUrl(new Date("2021-12-31"))).toBe(
+      "https://www.elprisetjustnu.se/api/v1/prices/2021/12-31_SE4.json",
+    );
+  });
+});
+
+describe("fetchUrl", () => {
+  it("should return data on successful request", async () => {
+    fetchMock.mockResolvedValue(createFetchResponse(responses[0]));
+
+    const response = await fetchUrl(
+      "https://www.elprisetjustnu.se/api/v1/prices/2021/01-01_SE4.json",
+    );
+
+    expect(fetchMock).toHaveBeenCalled();
+    expect(response).toEqual(responses[0]);
+  });
+
+  it("should return null on error", async () => {
+    fetchMock.mockRejectedValue(new Error("Network error"));
+
+    const response = await fetchUrl(
+      "https://www.elprisetjustnu.se/api/v1/prices/2021/01-01_SE4.json",
+    );
+
+    expect(fetchMock).toHaveBeenCalled();
+    expect(response).toBeNull();
   });
 });

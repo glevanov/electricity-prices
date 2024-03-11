@@ -6,13 +6,13 @@ import type { Segment } from "../api.types";
 
 const zone = "SE4";
 const endpoint = "https://www.elprisetjustnu.se/api/v1/prices";
-const getUrl = (date: Date) => {
+export const getUrl = (date: Date) => {
   const priceDate = lightFormat(date, "yyyy/MM-dd");
 
   return `${endpoint}/${priceDate}_${zone}.json`;
 };
 
-const fetchUrl = async (url: string): Promise<HourData[] | null> =>
+export const fetchUrl = async (url: string): Promise<HourData[] | null> =>
   await fetch(url)
     .then((response) => response.json())
     .catch(() => null);
