@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getPriceLiteral } from "./price";
+import { getPriceLiteral } from "./get-price-literal";
 
 describe("getPriceLiteral", () => {
   it.each([
