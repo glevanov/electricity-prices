@@ -1,3 +1,4 @@
+import { getAnalytics } from "../../analytics/get-analytics";
 import type { Segment } from "../api.types";
 import type { FetchedSegment } from "./types";
 
@@ -45,6 +46,7 @@ const addHeightToPoints = (data: FetchedSegment[]): Segment[] => {
 };
 
 export const mapData = (data: FetchedSegment[]) => {
+  console.log(getAnalytics(data));
   const withTodaySliced = trimTodayPoints(data);
   const withHeight = addHeightToPoints(withTodaySliced);
 
