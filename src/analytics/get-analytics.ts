@@ -1,4 +1,7 @@
-import type { FetchedSegment } from "../api/elprisetjustnu-api/types";
+import type {
+  FetchedSegment,
+  SegmentWithAnalytics,
+} from "../api/elprisetjustnu-api/types";
 
 const getAverage = (segment: FetchedSegment) => {
   let sum: number = 0;
@@ -61,8 +64,17 @@ const splitByAverage = (segment: FetchedSegment) => {
   return { aboveAverage, belowAverage };
 };
 
-export const getAnalytics = (data: FetchedSegment[]) => {
+export const getAnalytics = (
+  data: FetchedSegment[],
+): SegmentWithAnalytics[] => {
+  const withAnalytics: SegmentWithAnalytics[] = [];
+
   for (const segment of data) {
-    console.log(splitByAverage(segment));
+    withAnalytics.push({
+      ...segment,
+      ...splitByAverage(segment),
+    });
   }
+
+  return withAnalytics;
 };
