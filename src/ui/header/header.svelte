@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Segment } from "../../api/api.types";
   import { formatHour, getCurrentHourInMalmo } from "../../temporal/temporal";
+  // import Details from "./details.svelte";
 
   export let today: Segment;
 
@@ -12,16 +13,27 @@
 </script>
 
 <div class="header">
-  {#if typeof price === "number"}
-    <span class="price">{price} эре</span> за киловатт-час
-  {:else}
-    <span>не удалось найти цену за киловатт-час</span>
-  {/if}
+  <div class="pricing">
+    {#if typeof price === "number"}
+      <span class="price">{price} эре</span> за киловатт-час
+    {:else}
+      <span>не удалось найти цену за киловатт-час</span>
+    {/if}
 
-  <div class="subHeader">в Мальмё на {start}-{end}</div>
+    <div class="subHeader">в Мальмё на {start}-{end}</div>
+  </div>
+
+  <!-- <Details /> -->
 </div>
 
 <style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
   .price {
     font-weight: bold;
   }
