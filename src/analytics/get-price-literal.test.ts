@@ -10,7 +10,7 @@ describe("getPriceLiteral", () => {
     { price: 10, literal: "почти бесплатно" },
     { price: 11, literal: "очень дёшево" },
     { price: 39, literal: "дёшево" },
-    { price: 69, literal: "нормально" },
+    { price: 69, literal: "обычная цена" },
     { price: 499, literal: "дорого как чугунный мост" },
     { price: 501, literal: "дорого как чугунный мост" },
     { price: 20002030, literal: "дорого как чугунный мост" },

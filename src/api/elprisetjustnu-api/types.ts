@@ -16,5 +16,3 @@ export type FetchedSegment = {
 };
 
 export type SegmentWithAnalytics = FetchedSegment & Analytics;
-
-export type ElectricityData = ElectricityData[];

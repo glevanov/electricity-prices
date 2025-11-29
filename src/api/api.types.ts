@@ -1,6 +1,6 @@
 export type Point = {
   price: number;
-  hour: number;
+  hour: number | null;
   height: number;
 };
 

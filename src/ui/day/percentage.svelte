@@ -14,7 +14,13 @@
   >
     {Math.floor(price)}
   </dd>
-  <dt class="hour">{hour}</dt>
+  <dt class="hour">
+    {#if typeof hour === "number"}
+      {hour}
+    {:else}
+      &nbsp;
+    {/if}
+  </dt>
 </dl>
 
 <style>
