@@ -1,11 +1,10 @@
-import { getAnalytics } from "../../analytics/get-analytics";
 import type { Segment } from "../api.types";
-import type { FetchedSegment, SegmentWithAnalytics } from "./types";
+import type { FetchedSegment } from "./types";
 
 const HOURS_OFFSET = 2;
 
-const trimTodayPoints = (data: SegmentWithAnalytics[]) =>
-  data.reduce<SegmentWithAnalytics[]>((slice, day, index) => {
+const trimTodayPoints = (data: FetchedSegment[]) =>
+  data.reduce<FetchedSegment[]>((slice, day, index) => {
     if (index === 0) {
       const hour = new Date().getHours();
       const hourIndex = day.points.findIndex((point) => point.hour === hour);
@@ -22,7 +21,7 @@ const trimTodayPoints = (data: SegmentWithAnalytics[]) =>
     return [...slice, day];
   }, []);
 
-const addHeightToPoints = (data: SegmentWithAnalytics[]) => {
+const addHeightToPoints = (data: FetchedSegment[]) => {
   let maxValue = 0;
 
   for (const day of data) {
@@ -46,8 +45,7 @@ const addHeightToPoints = (data: SegmentWithAnalytics[]) => {
 };
 
 export const mapData = (data: FetchedSegment[]): Segment[] => {
-  const withAnalytics = getAnalytics(data);
-  const withTodaySliced = trimTodayPoints(withAnalytics);
+  const withTodaySliced = trimTodayPoints(data);
   const withHeight = addHeightToPoints(withTodaySliced);
 
   return withHeight;
